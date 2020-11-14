@@ -58,12 +58,12 @@ class Rational:
         return Rational(-self.x,self.y)
 
     def __lt__(self, other):
+        fraction2 = Fraction(other.x, other.y)
         fraction1 = Fraction(self.x,self.y)
-        fraction2 = Fraction(other.x,other.y)
 
         if fraction2 < fraction1:
-            return Rational(other.x,other.y)
+            return False
         elif fraction1 < fraction2:
-            return Rational(self.x,self.y)
+            return True
         else: # if they are equal do not return anything
             return NotImplemented
