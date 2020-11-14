@@ -2,6 +2,7 @@
 # ECE143 HW7
 
 from fractions import Fraction
+
 class Rational:
 
     def __init__(self,x,y):
