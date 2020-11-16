@@ -56,4 +56,6 @@ def split_count(x):
     df.loc[7, 'temp'] = 'Computer Vision'
     df.loc[8, 'temp'] = 'EDA tools'
 
+    df = df.rename({'temp': '', 'count': 'count'}, axis=1)
+
     return df
