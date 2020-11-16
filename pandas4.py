@@ -2,7 +2,7 @@
 # ECE143 HW7
 
 import pandas as pd
-def count_month_yr(x):
+def fix_categorical(x):
     '''
     This function takes in a pd.dataframe from count_month and counts the unique values
 
@@ -13,30 +13,15 @@ def count_month_yr(x):
     # check if x is a pd.dataframe
     assert isinstance(x, pd.DataFrame)
 
-    date_df = add_month_yr(x)
+    # put index values into a list
+    index_values = x.index.values
+    # make it categorical
+    cat = pd.Series(index_values, dtype="category")
 
-    # copy dates into list
-    time_list = date_df["month-yr"].tolist()
-    time_set = set(time_list)
-    non_rep_list = list(time_set)
+    # sorting cat
 
-    # get count of repeat words
-    count = 0
-    dict_repeat_times = {}
-    for i in range(len(non_rep_list)):
-        for k in range(len(time_list)):
-            if non_rep_list[i] == time_list[k]:
-                count = count + 1
-        dict_repeat_times[non_rep_list[i]] = count
-        count = 0
 
-    # structure the dataframe
-    final_df = pd.DataFrame(list(dict_repeat_times.items()), columns=['temp', 'Timestamp'])
-    final_df = final_df.sort_values('temp')
-    final_df.set_index('temp', inplace=True)  # temp is index
-    final_df.index.name = 'month-yr'
-
-    return final_df
+    return
 
 def add_month_yr(x):
     '''
@@ -93,4 +78,3 @@ def add_month_yr(x):
     df = df.rename({'new': 'month-yr'}, axis=1)
 
     return df
-

@@ -68,3 +68,10 @@ class Rational:
             return True
         else: # if they are equal do not return anything
             return NotImplemented
+
+    def __eq__(self, other):
+        if self.x == other.x:
+            if self.y == other.y:
+                return True
+        else:
+            return False

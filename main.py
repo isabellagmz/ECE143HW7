@@ -6,6 +6,7 @@ from equal_sums import get_min_split
 from pandas1 import split_count
 from pandas2 import add_month_yr
 from pandas3 import count_month_yr
+from pandas4 import fix_categorical
 
 import numpy as np
 import pandas as pd
@@ -26,7 +27,8 @@ if __name__ == '__main__':
     arr = np.array(sequence)
 
     #print(add_month_yr(df))
-    print(count_month_yr(df))
+    #print(count_month_yr(df))
+    #print(fix_categorical(count_month_yr(df)))
     #print(get_min_split(arr))
 
     #print(split_count(x))
@@ -40,5 +42,7 @@ if __name__ == '__main__':
     print(sorted([Rational(10,3), Rational(9,8), Rational(10,1), Rational(1,100)]))
     print(Rational(100,10))
     print(-Rational(12345,128191) + Rational(101,103) * 30/ 44)'''
+    if Rational(1,2) == Rational(1,3):
+        print("im in")
 
 
