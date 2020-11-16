@@ -39,7 +39,21 @@ def split_count(x):
         count = 0
 
     # structure the dataframe
-    df = pd.DataFrame(list(val_and_index.items()), columns=['', 'count'])
+    df = pd.DataFrame(list(val_and_index.items()), columns=['temp', 'count'])
     df = df.sort_values('count')
+
+    # hard coding order
+    df = df.reset_index()
+    del df['index']
+
+    df.loc[0, 'temp'] = 'All of the above'
+    df.loc[1, 'temp'] = 'Computer vision'
+    df.loc[2, 'temp'] = 'Image Processing'
+    df.loc[3, 'temp'] = 'Computer vision/image processing'
+    df.loc[4, 'temp'] = 'As a general skill'
+    df.loc[5, 'temp'] = 'scripting seems desirable for many jobs'
+    df.loc[6, 'temp'] = 'not sure'
+    df.loc[7, 'temp'] = 'Computer Vision'
+    df.loc[8, 'temp'] = 'EDA tools'
 
     return df
