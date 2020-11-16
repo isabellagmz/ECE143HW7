@@ -39,6 +39,7 @@ def split_count(x):
         count = 0
 
     # structure the dataframe
+    df = pd.DataFrame(list(val_and_index.items()), columns=['', 'count'])
+    df = df.sort_values('count')
 
-
-    return 0
+    return df
