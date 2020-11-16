@@ -16,7 +16,28 @@ def count_month_yr(x):
 
     date_df = add_month_yr(x)
 
-    return date_df
+    # copy dates into list
+    time_list = date_df["month-yr"].tolist()
+    time_set = set(time_list)
+    non_rep_list = list(time_set)
+
+    # get count of repeat words
+    count = 0
+    dict_repeat_times = {}
+    for i in range(len(non_rep_list)):
+        for k in range(len(time_list)):
+            if non_rep_list[i] == time_list[k]:
+                count = count + 1
+        dict_repeat_times[non_rep_list[i]] = count
+        count = 0
+
+    # structure the dataframe
+    final_df = pd.DataFrame(list(dict_repeat_times.items()), columns=['temp', 'Timestamp'])
+    final_df = final_df.sort_values('temp')
+    final_df.set_index('temp', inplace=True)  # temp is index
+    final_df.index.name = 'month-yr'
+
+    return final_df
 
 def add_month_yr(x):
     '''

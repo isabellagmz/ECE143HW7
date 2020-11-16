@@ -26,10 +26,10 @@ if __name__ == '__main__':
     arr = np.array(sequence)
 
     #print(add_month_yr(df))
-    #print(count_month_yr(df))
+    print(count_month_yr(df))
     #print(get_min_split(arr))
 
-    print(split_count(x))
+    #print(split_count(x))
 
     '''print(repr(r))
     print(-1/r)
