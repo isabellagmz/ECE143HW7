@@ -5,6 +5,7 @@ from rational import Rational
 from equal_sums import get_min_split
 from pandas1 import split_count
 from pandas2 import add_month_yr
+from pandas3 import count_month_yr
 
 import numpy as np
 import pandas as pd
@@ -24,10 +25,11 @@ if __name__ == '__main__':
     sequence = [5, 10, 15, 20, 25]
     arr = np.array(sequence)
 
-    print(add_month_yr(df))
+    #print(add_month_yr(df))
+    #print(count_month_yr(df))
     #print(get_min_split(arr))
 
-    #print(split_count(x))
+    print(split_count(x))
 
     '''print(repr(r))
     print(-1/r)
