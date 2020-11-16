@@ -55,6 +55,6 @@ def add_month_yr(x):
     # delete old column
     del df['Timestamp']
     # rename column
-    df = df.rename({'new': 'Timestamp'}, axis=1)
+    df = df.rename({'new': 'month-yr'}, axis=1)
 
     return df
