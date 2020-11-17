@@ -31,10 +31,12 @@ def count_month_yr(x):
         count = 0
 
     # structure the dataframe
-    final_df = pd.DataFrame(list(dict_repeat_times.items()), columns=['temp', 'Timestamp'])
-    final_df = final_df.sort_values('temp')
-    final_df.set_index('temp', inplace=True)  # temp is index
-    final_df.index.name = 'month-yr'
+    final_df = pd.DataFrame(list(dict_repeat_times.items()), columns=['month-yr', 'Timestamp'])
+    final_df = final_df.sort_values('month-yr')
+    final_df = final_df.reset_index()
+    del final_df['index']
+    #final_df.set_index('temp', inplace=True)  # temp is index
+    # final_df.index.name = 'month-yr'
 
     return final_df
 

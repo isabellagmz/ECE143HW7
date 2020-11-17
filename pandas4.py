@@ -2,6 +2,7 @@
 # ECE143 HW7
 
 import pandas as pd
+import datetime
 def fix_categorical(x):
     '''
     This function takes in a pd.dataframe from count_month and counts the unique values
@@ -14,12 +15,16 @@ def fix_categorical(x):
     assert isinstance(x, pd.DataFrame)
 
     # put index values into a list
-    index_values = x.index.values
+    index_values = list(x.index.values)
+    #print(index_values)
+
     # make it categorical
-    cat = pd.Series(index_values, dtype="category")
+    #cat = pd.Series(index_values, dtype="category")
+    #print(cat)
 
     # sorting cat
 
+    print(x.groupby('month-yr')['Timestamp'].count().to_frame().sort_index())
 
     return
 
