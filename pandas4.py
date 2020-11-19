@@ -22,19 +22,28 @@ def fix_categorical(x):
     data_dict = {}
     for date in range(len(index_values)):
         data_dict[index_values[date]] = content[date]
-
     # convert to datetime object and store in dict
     index_values.sort(key=lambda date: datetime.strptime(date, "%b-%Y"))
 
     # make it categorical
     cat = pd.Series(index_values, dtype="category")
-    print(cat)
+
+    # make a content list
+    content = [] # empty content
+    for oredered_key in range(len(index_values)):
+        for key in data_dict.keys():
+            if(key == index_values[oredered_key]):
+                content.append(data_dict[key])
 
     # add cat back to dataframe
+    final_df = pd.DataFrame({'month-yr':cat, 'Timestamp':content})
 
-    #print(x.groupby('month-yr')['Timestamp'].count().to_frame().sort_index())
+    # delete index
+    final_df.set_index('month-yr', inplace=True)  # temp is index
 
-    return
+    #print(final_df.groupby('month-yr')['Timestamp'].count().to_frame().sort_index())
+
+    return final_df
 
 def add_month_yr(x):
     '''
