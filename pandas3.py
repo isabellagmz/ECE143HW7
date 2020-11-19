@@ -13,7 +13,7 @@ def count_month_yr(x):
     # check if x is a pd.dataframe
     assert isinstance(x, pd.DataFrame)
 
-    date_df = add_month_yr(x)
+    date_df = x
 
     # copy dates into list
     time_list = date_df["month-yr"].tolist()
@@ -33,10 +33,7 @@ def count_month_yr(x):
     # structure the dataframe
     final_df = pd.DataFrame(list(dict_repeat_times.items()), columns=['month-yr', 'Timestamp'])
     final_df = final_df.sort_values('month-yr')
-    final_df = final_df.reset_index()
-    del final_df['index']
-    #final_df.set_index('temp', inplace=True)  # temp is index
-    # final_df.index.name = 'month-yr'
+    final_df.set_index('month-yr', inplace=True)  # temp is index
 
     return final_df
 
