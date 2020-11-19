@@ -28,10 +28,12 @@ if __name__ == '__main__':
 
     #print(add_month_yr(df))
     #print(count_month_yr(df))
-    print(count_month_yr(add_month_yr(df)))
-    #print(fix_categorical(count_month_yr(df)))
+    #print(count_month_yr(add_month_yr(df)))
+    print(fix_categorical(count_month_yr(add_month_yr(df))))
+    #y = fix_categorical(count_month_yr(add_month_yr(df)))
+    #print(y.groupby('month-yr')['Timestamp'].count().to_frame().sort_index())
+
     #print(get_min_split(arr))
 
     #print(split_count(x))
-
 
