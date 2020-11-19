@@ -26,7 +26,7 @@ def fix_categorical(x):
     index_values.sort(key=lambda date: datetime.strptime(date, "%b-%Y"))
 
     # make it categorical
-    cat = pd.Series(index_values, dtype="category")
+    cat = pd.Categorical(index_values, categories=index_values, ordered=True)
 
     # make a content list
     content = [] # empty content
