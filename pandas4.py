@@ -14,12 +14,16 @@ def fix_categorical(x):
     # check if x is a pd.dataframe
     assert isinstance(x, pd.DataFrame)
 
-    x['month-yr'] = pd.Categorical(x['month-yr'], ordered=True) # change month-yr to categorical
-    x['Timestamp'] = 0
+    x['month-yr'] = pd.DataFrame(x['month-yr'], dtype='category') # change month-yr to categorical
 
     # put index values into a list
     vals = list(x['month-yr'])
-    vals.sort(key=lambda date: datetime.strptime(date, "%b-%Y"))
+    x['month-yr'] = pd.Categorical(vals, categories=['Sep-2017','Jan-2018',
+                                           'Feb-2018', 'Mar-2018', 'Apr-2018',
+                                           'Sep-2018', 'Oct-2018', 'Jan-2019'], ordered=True)
+
+    x['Timestamp']=0
+    #vals.sort(key=lambda date: datetime.strptime(date, "%b-%Y"))
 
     '''content = x["Timestamp"].to_list()
 
