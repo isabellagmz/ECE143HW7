@@ -14,36 +14,40 @@ def fix_categorical(x):
     # check if x is a pd.dataframe
     assert isinstance(x, pd.DataFrame)
 
+    x['month-yr'] = pd.Categorical(x['month-yr'], ordered=True) # change month-yr to categorical
+    x['Timestamp'] = 0
+
     # put index values into a list
-    index_values = list(x.index.values)
-    content = x["Timestamp"].to_list()
+    vals = list(x['month-yr'])
+    vals.sort(key=lambda date: datetime.strptime(date, "%b-%Y"))
+
+    '''content = x["Timestamp"].to_list()
 
     # make dictionary with dates and values
     data_dict = {}
-    for date in range(len(index_values)):
-        data_dict[index_values[date]] = content[date]
+    for date in range(len(vals)):
+        data_dict[vals[date]] = content[date]
     # convert to datetime object and store in dict
-    index_values.sort(key=lambda date: datetime.strptime(date, "%b-%Y"))
-
-    # make it categorical
-    cat = pd.Categorical(index_values, categories=index_values, ordered=True)
+    vals.sort(key=lambda date: datetime.strptime(date, "%b-%Y"))
+    '''
+    '''# make it categorical
+    cat = pd.Categorical(vals, categories=vals, ordered=True)
 
     # make a content list
     content = [] # empty content
-    for oredered_key in range(len(index_values)):
+    for oredered_key in range(len(vals)):
         for key in data_dict.keys():
-            if(key == index_values[oredered_key]):
+            if(key == vals[oredered_key]):
                 content.append(data_dict[key])
 
     # add cat back to dataframe
-    final_df = pd.DataFrame({'month-yr':cat, 'Timestamp':content})
+    #final_df = pd.DataFrame({'month-yr':cat, 'Timestamp':content})
 
     # delete index
-    final_df.set_index('month-yr', inplace=True)  # temp is index
+    #final_df.set_index('month-yr', inplace=True)  # temp is index'''
 
-    #print(final_df.groupby('month-yr')['Timestamp'].count().to_frame().sort_index())
+    return x
 
-    return final_df
 
 def add_month_yr(x):
     '''
